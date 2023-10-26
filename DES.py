@@ -61,7 +61,11 @@ def v(i):
 ###################################################################################
 # for each aij in m1 and bkl in m2, assigns bkl <- aij in order
 def perm_matrix_mul(m1, m2):
-    return None
+    m = [] ## the result
+    for i in range(len(m1)):
+        m.append(m2[m1[i]])
+    return m
+
 
 # For an (m x n) matrix m with even n, returns a (m x n/2) matrix of the values in the left half
 def left_matrix(m):

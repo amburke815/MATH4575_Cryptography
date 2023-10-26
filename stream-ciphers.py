@@ -69,15 +69,50 @@ joint_prob = lambda x, y, prX, prY: cond_prob(x, y, prX, prX if prY is None else
 ## X x Y x Lambda[PowerSet(X) -> R] x Lambda[PowerSet(Y) -> R] -> R
 cond_prob = lambda x, y, PrX, prY: 0 # TODO
 
+def perm_matrix_mul(m1, m2):
+    m = [] ## the result
+    for i in range(len(m1)):
+        m.append(m2[m1[i]])
+    return m
+
+def as_matrix(m, nrows, ncols):
+    matrix = []
+    for i in range(nrows):
+        row = []
+        for j in range(ncols):
+            row.append(m[ncols * i + j])
+        matrix.append(row)
+    return matrix
+
+
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    def next_char(z):
-        return [z[1], z[2], z[3], (z[0] + z[3]) % 2]
+    # def next_char(z):
+    #     return [z[1], z[2], z[3], (z[0] + z[2] +  z[3]) % 2]
+    #
+    # def h(z):
+    #     return next_char(next_char(next_char(next_char(z))))
+    PC1 = [57,49,41, 33, 25, 17, 9,
+           1, 58, 50, 42, 34, 26, 18,
+           10, 2, 59, 51, 43, 35, 27,
+           19, 11, 3, 60, 52, 44, 36,
+           63, 55, 47, 39, 31, 23, 15,
+           7, 62, 54, 46, 38, 30, 22,
+           14, 6, 61, 53, 45, 37, 29,
+           21, 13, 5, 28, 20, 12, 4]
+    K = [1, 0, 0, 0, 1, 0, 0, 1,
+         0, 1, 0, 0, 0, 1, 0, 1,
+         0, 0, 1, 0, 0, 0, 1, 1,
+         0, 0, 0, 1, 0, 0, 1, 1,
+         0, 0, 0, 1, 0, 0, 1, 1,
+         0, 0, 1, 0, 0, 0, 1, 1,
+         0, 1, 0, 0, 0, 1, 0, 1,
+         1, 0, 0, 0, 1, 0, 0, 1]
 
-    def h(z):
-        return next_char(next_char(next_char(next_char(z))))
+    print(as_matrix(perm_matrix_mul(PC1, K), 8, 7))
+
 
 
 
